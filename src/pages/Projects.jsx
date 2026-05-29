@@ -208,7 +208,7 @@ export default function Projects({ showToast }) {
               </div>
 
               {/* Right Column: Project Details */}
-              <div className="p-lg space-y-lg flex flex-col justify-start md:overflow-y-auto md:max-h-[85vh] pr-xl pt-xl relative">
+              <div className="p-lg space-y-lg flex flex-col justify-start md:overflow-y-auto md:max-h-[85vh] pr-md md:pr-xl pt-md md:pt-xl relative">
                 <div>
                   <span className="inline-block px-3 py-1 bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed-dim rounded-full text-caption font-bold tracking-wider uppercase mb-xs border border-secondary-fixed/20">
                     {activeProject.categoryDisplay || activeProject.category}

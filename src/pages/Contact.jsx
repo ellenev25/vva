@@ -43,9 +43,9 @@ export default function Contact({ showToast }) {
             </p>
           </div>
           {/* Social Links Bento Box */}
-          <div className="glass-card glow-card rounded-[2rem] p-lg border border-surface-container-high dark:border-outline/10 shadow-sm max-w-md mx-auto lg:mx-0 w-full relative overflow-hidden">
+          <div className="glass-card glow-card rounded-[2rem] p-md md:p-lg border border-surface-container-high dark:border-outline/10 shadow-sm max-w-md mx-auto lg:mx-0 w-full relative overflow-hidden">
             <h3 className="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface font-extrabold mb-md">Connect with me on:</h3>
-            <div className="grid grid-cols-4 gap-md justify-items-center">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-md justify-items-center">
               <a className="flex flex-col items-center justify-center gap-xs group" href="mailto:velenadrias@plv.edu.ph">
                 <div className="w-16 h-16 rounded-full bg-surface-container dark:bg-zinc-800 flex items-center justify-center group-hover:bg-red-100 dark:group-hover:bg-red-950/40 transition-colors duration-300 shadow-sm">
                   <span className="material-symbols-outlined text-[28px] text-tertiary dark:text-tertiary-fixed group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors" style={{ fontVariationSettings: "'FILL' 0, 'wght' 300" }}>mail</span>
@@ -75,7 +75,7 @@ export default function Contact({ showToast }) {
         </div>
         
         {/* Right Column: Contact Form */}
-        <div className="w-full lg:w-1/2 glass-card glow-card rounded-[3rem] p-lg md:p-xl border border-white/80 dark:border-white/5 relative">
+        <div className="w-full lg:w-1/2 glass-card glow-card rounded-[3rem] p-md md:p-xl border border-white/80 dark:border-white/5 relative">
           {/* Internal Glow effect for the top edge */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent dark:via-white/20 rounded-t-[3rem] opacity-50"></div>
           <form onSubmit={handleSubmit} className="flex flex-col gap-md">
