@@ -6,6 +6,7 @@ export default function Contact({ showToast }) {
     email: '',
     message: ''
   });
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,13 +16,41 @@ export default function Contact({ showToast }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.message) {
-      showToast("Message sent successfully! Thank you " + formData.name + "! ✨", "success");
-      setFormData({ name: '', email: '', message: '' });
-    } else {
+    if (!formData.name || !formData.email || !formData.message) {
       showToast("Please fill out all required fields.", "error");
+      return;
+    }
+
+    setIsSending(true);
+    try {
+      // TODO: Register a free account at https://formspree.io/ and create a new form.
+      // Replace the 'YOUR_FORMSPREE_FORM_ID' placeholder below with your actual Formspree Form ID (e.g. 'xbjnygzd').
+      const response = await fetch("https://formspree.io/f/xgoqqwve", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
+      });
+
+      if (response.ok) {
+        showToast("Message sent successfully to Velen! ✨", "success");
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error("Formspree response not OK");
+      }
+    } catch (error) {
+      console.error("Email submission error:", error);
+      showToast("Failed to send message. Please ensure your Formspree ID is configured or use direct links.", "error");
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -118,10 +147,18 @@ export default function Contact({ showToast }) {
                 rows="5"
               ></textarea>
             </div>
-            <button className="mt-md bg-primary text-on-primary dark:bg-primary-container dark:text-on-primary-container font-headline-md text-headline-md py-sm rounded-xl bubbly-button flex items-center justify-center gap-sm relative overflow-hidden group" type="submit">
+            <button 
+              disabled={isSending}
+              className={`mt-md bg-primary text-on-primary dark:bg-primary-container dark:text-on-primary-container font-headline-md text-headline-md py-sm rounded-xl bubbly-button flex items-center justify-center gap-sm relative overflow-hidden group ${isSending ? 'opacity-70 cursor-not-allowed' : ''}`} 
+              type="submit"
+            >
               <div className="absolute inset-x-0 top-0 h-px bg-white/30 rounded-t-xl"></div>
-              <span>Send Message</span>
-              <span className="material-symbols-outlined group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>send</span>
+              <span>{isSending ? 'Sending...' : 'Send Message'}</span>
+              {isSending ? (
+                <span className="material-symbols-outlined animate-spin" style={{ fontVariationSettings: "'FILL' 0" }}>sync</span>
+              ) : (
+                <span className="material-symbols-outlined group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>send</span>
+              )}
             </button>
           </form>
         </div>
