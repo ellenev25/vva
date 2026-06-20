@@ -20,8 +20,8 @@ export default function Navbar({ theme, toggleTheme }) {
   const activeStyle = "bg-primary/10 text-primary dark:bg-primary-fixed-dim/15 dark:text-primary-fixed-dim px-gutter py-[6px] rounded-full font-bold transition-all duration-300 block";
   const inactiveStyle = "text-on-surface-variant dark:text-outline-variant font-medium hover:bg-surface-container-high/40 dark:hover:bg-zinc-800/40 px-gutter py-[6px] rounded-full hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-300 block";
 
-  const activeMobileStyle = "mobile-nav-link bg-primary/10 text-primary dark:bg-primary-fixed-dim/15 dark:text-primary-fixed-dim px-4 py-2 rounded-xl font-bold transition-all duration-300 block";
-  const inactiveMobileStyle = "mobile-nav-link text-on-surface-variant dark:text-outline-variant font-medium hover:bg-surface-container/40 dark:hover:bg-zinc-800/40 px-4 py-2 rounded-xl hover:text-primary transition-all duration-300 block";
+  const activeMobileStyle = "text-primary dark:text-primary-fixed-dim bg-primary/10 dark:bg-primary-fixed-dim/15 px-8 py-3 rounded-full font-black text-2xl block text-center transition-all duration-300 shadow-[0_4px_12px_rgba(135,79,76,0.08)]";
+  const inactiveMobileStyle = "text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-surface-container-high/30 dark:hover:bg-zinc-800/30 px-8 py-3 rounded-full font-bold text-2xl block text-center transition-all duration-300";
 
   return (
     <>
@@ -126,17 +126,13 @@ export default function Navbar({ theme, toggleTheme }) {
           </div>
           
           {/* Centered Navigation Links */}
-          <div className="flex-grow flex items-center justify-center">
-            <ul className="flex flex-col gap-lg text-center uppercase tracking-wider">
+          <div className="flex-grow flex items-center justify-center w-full">
+            <ul className="flex flex-col gap-sm text-center uppercase tracking-wider w-full max-w-xs">
               <li>
                 <NavLink 
                   to="/" 
                   onClick={() => setDrawerOpen(false)} 
-                  className={({ isActive }) => 
-                    isActive 
-                      ? "text-primary dark:text-primary-fixed-dim font-black text-4xl block py-sm" 
-                      : "text-on-surface-variant/70 dark:text-outline-variant/70 hover:text-primary dark:hover:text-primary-fixed-dim font-extrabold text-4xl block py-sm transition-colors duration-300"
-                  }
+                  className={({ isActive }) => isActive ? activeMobileStyle : inactiveMobileStyle}
                 >
                   Home
                 </NavLink>
@@ -145,11 +141,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 <NavLink 
                   to="/about" 
                   onClick={() => setDrawerOpen(false)} 
-                  className={({ isActive }) => 
-                    isActive 
-                      ? "text-primary dark:text-primary-fixed-dim font-black text-4xl block py-sm" 
-                      : "text-on-surface-variant/70 dark:text-outline-variant/70 hover:text-primary dark:hover:text-primary-fixed-dim font-extrabold text-4xl block py-sm transition-colors duration-300"
-                  }
+                  className={({ isActive }) => isActive ? activeMobileStyle : inactiveMobileStyle}
                 >
                   About
                 </NavLink>
@@ -158,11 +150,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 <NavLink 
                   to="/projects" 
                   onClick={() => setDrawerOpen(false)} 
-                  className={({ isActive }) => 
-                    isActive 
-                      ? "text-primary dark:text-primary-fixed-dim font-black text-4xl block py-sm" 
-                      : "text-on-surface-variant/70 dark:text-outline-variant/70 hover:text-primary dark:hover:text-primary-fixed-dim font-extrabold text-4xl block py-sm transition-colors duration-300"
-                  }
+                  className={({ isActive }) => isActive ? activeMobileStyle : inactiveMobileStyle}
                 >
                   Projects
                 </NavLink>
@@ -171,11 +159,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 <NavLink 
                   to="/contact" 
                   onClick={() => setDrawerOpen(false)} 
-                  className={({ isActive }) => 
-                    isActive 
-                      ? "text-primary dark:text-primary-fixed-dim font-black text-4xl block py-sm" 
-                      : "text-on-surface-variant/70 dark:text-outline-variant/70 hover:text-primary dark:hover:text-primary-fixed-dim font-extrabold text-4xl block py-sm transition-colors duration-300"
-                  }
+                  className={({ isActive }) => isActive ? activeMobileStyle : inactiveMobileStyle}
                 >
                   Contact
                 </NavLink>
