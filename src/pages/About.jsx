@@ -65,7 +65,7 @@ export default function About({ showToast }) {
       {/* Introduction Section */}
       <section className="flex flex-col md:flex-row items-center gap-lg py-md">
         <div className="w-full md:w-1/2 space-y-md order-2 md:order-1">
-          <div className="inline-flex items-center gap-xs bg-primary-fixed dark:bg-on-primary-fixed-variant/50 px-sm py-xs rounded-full">
+          <div className="inline-flex items-center gap-xs bg-primary-fixed dark:bg-on-primary-fixed-variant/50 px-sm py-xs rounded-full animate-bounce shadow-sm border border-primary-fixed/20" style={{ animationDuration: '4s' }}>
             <span className="material-symbols-outlined text-primary dark:text-primary-fixed-dim text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>waving_hand</span>
             <span className="font-label-md text-label-md text-primary dark:text-primary-fixed-dim uppercase tracking-wider">HELLO THERE!</span>
           </div>

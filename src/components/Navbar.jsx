@@ -97,72 +97,101 @@ export default function Navbar({ theme, toggleTheme }) {
         </div>
       </nav>
 
-      {/* Mobile Navigation Drawer */}
-      <div className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ${drawerOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+      {/* Mobile Navigation Drawer Overlay */}
+      <div className={`fixed inset-0 z-50 md:hidden transition-all duration-500 ${drawerOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
         {/* Backdrop overlay */}
         <div 
           onClick={() => setDrawerOpen(false)}
-          className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${drawerOpen ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-2xl transition-opacity duration-500 ${drawerOpen ? 'opacity-100' : 'opacity-0'}`}
         ></div>
         
-        {/* Drawer side content */}
-        <div className={`absolute top-0 right-0 h-full w-[280px] bg-surface dark:bg-inverse-surface shadow-2xl p-lg flex flex-col gap-lg transition-transform duration-300 border-l border-outline-variant/15 ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          <div className="flex justify-between items-center border-b border-outline-variant/20 pb-sm">
-            <span className="font-headline-md text-primary dark:text-primary-fixed-dim font-bold text-lg">Menu</span>
+        {/* Drawer content (fullscreen and centered) */}
+        <div className={`absolute inset-0 flex flex-col justify-between p-lg transition-all duration-500 transform ${drawerOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'}`}>
+          {/* Top Bar */}
+          <div className="flex justify-between items-center w-full">
+            <Link 
+              to="/" 
+              onClick={() => setDrawerOpen(false)} 
+              className="font-headline-md text-primary dark:text-primary-fixed-dim font-extrabold tracking-tight text-xl"
+            >
+              Velen V. Adrias
+            </Link>
             <button 
               onClick={() => setDrawerOpen(false)} 
-              className="p-xs hover:bg-surface-container dark:hover:bg-zinc-800 rounded-full transition-colors flex items-center justify-center"
+              className="w-12 h-12 bg-primary/10 dark:bg-primary-fixed-dim/10 text-primary dark:text-primary-fixed-dim rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-200"
+              aria-label="Close Menu"
             >
-              <span className="material-symbols-outlined">close</span>
+              <span className="material-symbols-outlined text-2xl font-bold">close</span>
             </button>
           </div>
           
-          <ul className="flex flex-col gap-md text-lg">
-            <li>
-              <NavLink 
-                to="/" 
-                onClick={() => setDrawerOpen(false)} 
-                className={({ isActive }) => isActive ? activeMobileStyle : inactiveMobileStyle}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink 
-                to="/about" 
-                onClick={() => setDrawerOpen(false)} 
-                className={({ isActive }) => isActive ? activeMobileStyle : inactiveMobileStyle}
-              >
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink 
-                to="/projects" 
-                onClick={() => setDrawerOpen(false)} 
-                className={({ isActive }) => isActive ? activeMobileStyle : inactiveMobileStyle}
-              >
-                Projects
-              </NavLink>
-            </li>
-            <li>
-              <NavLink 
-                to="/contact" 
-                onClick={() => setDrawerOpen(false)} 
-                className={({ isActive }) => isActive ? activeMobileStyle : inactiveMobileStyle}
-              >
-                Contact
-              </NavLink>
-            </li>
-          </ul>
+          {/* Centered Navigation Links */}
+          <div className="flex-grow flex items-center justify-center">
+            <ul className="flex flex-col gap-lg text-center uppercase tracking-wider">
+              <li>
+                <NavLink 
+                  to="/" 
+                  onClick={() => setDrawerOpen(false)} 
+                  className={({ isActive }) => 
+                    isActive 
+                      ? "text-primary dark:text-primary-fixed-dim font-black text-4xl block py-sm" 
+                      : "text-on-surface-variant/70 dark:text-outline-variant/70 hover:text-primary dark:hover:text-primary-fixed-dim font-extrabold text-4xl block py-sm transition-colors duration-300"
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                  to="/about" 
+                  onClick={() => setDrawerOpen(false)} 
+                  className={({ isActive }) => 
+                    isActive 
+                      ? "text-primary dark:text-primary-fixed-dim font-black text-4xl block py-sm" 
+                      : "text-on-surface-variant/70 dark:text-outline-variant/70 hover:text-primary dark:hover:text-primary-fixed-dim font-extrabold text-4xl block py-sm transition-colors duration-300"
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                  to="/projects" 
+                  onClick={() => setDrawerOpen(false)} 
+                  className={({ isActive }) => 
+                    isActive 
+                      ? "text-primary dark:text-primary-fixed-dim font-black text-4xl block py-sm" 
+                      : "text-on-surface-variant/70 dark:text-outline-variant/70 hover:text-primary dark:hover:text-primary-fixed-dim font-extrabold text-4xl block py-sm transition-colors duration-300"
+                  }
+                >
+                  Projects
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                  to="/contact" 
+                  onClick={() => setDrawerOpen(false)} 
+                  className={({ isActive }) => 
+                    isActive 
+                      ? "text-primary dark:text-primary-fixed-dim font-black text-4xl block py-sm" 
+                      : "text-on-surface-variant/70 dark:text-outline-variant/70 hover:text-primary dark:hover:text-primary-fixed-dim font-extrabold text-4xl block py-sm transition-colors duration-300"
+                  }
+                >
+                  Contact
+                </NavLink>
+              </li>
+            </ul>
+          </div>
           
-          <div className="mt-auto border-t border-outline-variant/20 pt-md">
+          {/* Centered View CV Button at the Bottom */}
+          <div className="w-full flex justify-center pb-xl">
             <Link 
               to="/resume" 
               onClick={() => setDrawerOpen(false)} 
-              className="bg-primary text-on-primary dark:bg-primary-container dark:text-on-primary-container px-gutter py-sm rounded-full font-label-md text-label-md text-center bubbly-btn active:scale-95 block"
+              className="bubbly-button bg-primary text-on-primary dark:bg-primary-container dark:text-on-primary-container px-12 py-md rounded-full font-headline-md text-lg text-center shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-sm"
             >
-              View CV
+              <span className="material-symbols-outlined">description</span>
+              <span>View CV</span>
             </Link>
           </div>
         </div>

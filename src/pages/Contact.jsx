@@ -60,7 +60,7 @@ export default function Contact({ showToast }) {
         {/* Left Column: Header & Socials */}
         <div className="w-full lg:w-1/2 flex flex-col gap-lg text-center lg:text-left">
           <div className="space-y-sm">
-            <div className="inline-block bg-secondary-fixed/50 dark:bg-on-secondary-fixed-variant/50 text-on-secondary-container dark:text-secondary-fixed px-sm py-xs rounded-full font-label-md text-label-md mb-xs border border-secondary-fixed/20">
+            <div className="inline-block bg-secondary-fixed/50 dark:bg-on-secondary-fixed-variant/50 text-on-secondary-container dark:text-secondary-fixed px-sm py-xs rounded-full font-label-md text-label-md mb-xs border border-secondary-fixed/20 animate-bounce shadow-sm" style={{ animationDuration: '4s' }}>
               Say Hello  
             </div>
             <h1 className="font-headline-xl text-[48px] md:text-[64px] font-extrabold leading-[1.1] tracking-tight">
